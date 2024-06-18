@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bar Graph</title>
+    <style>
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bar Graph from Excel Data</h1>
+    <img src="data:image/png;base64,{{ graph_base64 }}" alt="Bar Graph">
+    <h2>Data Table</h2>
+    <div>{{ table_html|safe }}</div>
+    <a href="/upload/">Upload another file</a>
+</body>
+</html>

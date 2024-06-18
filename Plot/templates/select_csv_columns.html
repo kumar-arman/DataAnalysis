@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block body %}
+<style>
+   /* Example CSS for custom-select class */
+   .id_y_axis {
+            height: 20%; /* Adjust this value as needed */
+            overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+        }
+   .heading{
+      background-color: #007bff;
+      text-align: center;
+      font-weight: 700;
+      padding: 5px;
+      border-radius: 5px;
+   }
+   .text_heading{
+      text-transform: uppercase;width: 350px;font-weight: 700;color: #fff;
+   }
+   .div_x{
+      width: 350px;overflow-x: auto;
+   }
+   .div_y{
+      width: 350px;height: 300px;overflow-y: auto;
+   }
+</style>
+  <!-- dashboard inner -->
+  <div class="midde_cont">
+    <div class="container-fluid">
+       <div class="row column_title">
+          <div class="col-md-12">
+             <div class="page_title">
+                <h2>Importing CSV File</h2>
+             </div>
+          </div>
+       </div>
+       <!-- row -->
+       <div class="row column1">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+             <div class="white_shd full margin_bottom_30">
+                <div class="full graph_head">
+                   <div class="heading1 margin_0">
+                    <h1 style="color: #fff;">Select Parameter for Graph</h1>
+                   </div>
+                </div>
+                <div class="full price_table padding_infor_info">
+                 
+                    <form method="post">
+                     {% csrf_token %}
+                     <div class="div_x">
+                        <label  class="heading text_heading" for="{{ form.x_axis.id_for_label }}" >Select {{ form.x_axis.label }}</label>
+                        {{ form.x_axis }}
+                        {% if form.x_axis.errors %}
+                            <ul>
+                                {% for error in form.x_axis.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                    <br>
+                    <label class="heading text_heading" for="{{ form.y_axis.id_for_label }}" >Select {{ form.y_axis.label }}</label>
+                     <div class="div_y">
+                       
+                        {{ form.y_axis }}
+                        {% if form.y_axis.errors %}
+                            <ul>
+                                {% for error in form.y_axis.errors %}
+                                    <li>{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                    <br>
+                    <div class="div_x">
+                     <label class="heading text_heading" for="{{ form.graph_type.id_for_label }}" >Select {{ form.graph_type.label }}</label>
+                     {{ form.graph_type }}
+                     {% if form.graph_type.errors %}
+                         <ul>
+                             {% for error in form.graph_type.errors %}
+                                 <li>{{ error }}</li>
+                             {% endfor %}
+                         </ul>
+                     {% endif %}
+                 </div>
+                 <br>
+                 <!-- Filter value field -->
+                 <div class="div_y">
+                     <label class="heading text_heading" for="{{ form.title_values.id_for_label }}" >Select {{ form.title_values.label }}</label>
+                     {{ form.title_values }}
+                     {% if form.title_values.errors %}
+                         <ul>
+                             {% for error in form.title_values.errors %}
+                                 <li>{{ error }}</li>
+                             {% endfor %}
+                         </ul>
+                     {% endif %}
+                 </div>
+                 <br>
+                 <!-- Graph width field -->
+                 <h5 class="heading text_heading" >Change the Dimension of Graph</h5>
+                 <div>
+                  <br>
+                     <label for="{{ form.width.id_for_label }}" >{{ form.width.label }}</label>
+                     {{ form.width }}
+                     {% if form.width.errors %}
+                         <ul>
+                             {% for error in form.width.errors %}
+                                 <li>{{ error }}</li>
+                             {% endfor %}
+                         </ul>
+                     {% endif %}
+                 </div>
+                 
+                 <!-- Graph height field -->
+                 <div>
+                     <label for="{{ form.height.id_for_label }}">{{ form.height.label }}</label>
+                     
+                     {{ form.height }}
+                     <br>
+                     {% if form.height.errors %}
+                         <ul>
+                             {% for error in form.height.errors %}
+                                 <li>{{ error }}</li>
+                             {% endfor %}
+                         </ul>
+                     {% endif %}
+                 </div>
+                    <br>
+                        <button class="btn btn-info" type="submit">Generate Graph</button>
+                    </form>
+                </div>
+             </div>
+             <div class="col-md-2"></div>
+          </div>
+          <!-- end row -->
+       </div>
+       <!-- footer -->
+      
+    </div>
+    <!-- end dashboard inner -->
+ </div>
+   
+
+
+{% endblock %}

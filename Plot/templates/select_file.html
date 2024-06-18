@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block body %}
+  <!-- dashboard inner -->
+  <div class="midde_cont">
+    <div class="container-fluid">
+       <div class="row column_title">
+          <div class="col-md-12">
+             <div class="page_title">
+                <h2>Upload File</h2>
+             </div>
+          </div>
+       </div>
+       <!-- row -->
+       <div class="row column1">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+             <div class="white_shd full margin_bottom_30">
+                <div class="full graph_head">
+                   <div class="heading1 margin_0">
+                    <h1 style="color: #fff;">Select Existing File</h1>
+                   </div>
+                </div>
+                <div class="full price_table padding_infor_info">
+                 
+                <h3 style=" color: rgb(243, 11, 11);">Existing File Details:</h3>      
+                <h4 style="font-size: 16px; color: rgb(243, 11, 11);">A file with a similar name already exists. Please choose an action:</h4>
+                <p style="font-weight: 700;font-size: 14px; color: rgb(15, 177, 3);">File Name: {{ existing_file.file.name }}</p>
+                <p style="font-weight: 700;font-size: 14px; color: rgb(15, 177, 3);">Uploaded At: {{ existing_file.uploaded_at }}</p>
+                <div class="row">
+                    <div class="col-md-2">
+                        <form action="{% url 'handle_existing_file' existing_file.id %}" method="post">
+                            {% csrf_token %}
+                            <input class="btn btn-info" type="submit" value="Use This File">
+                        </form>
+                    </div>
+                    <div class="col-md-2">
+                        <form action="{% url 'upload_file' %}" method="get">
+                            <input class="btn btn-primary" type="submit" value="Upload New File">
+                        </form>
+                    </div>
+                </div>
+               
+                
+               
+                </div>
+             </div>
+             <div class="col-md-2"></div>
+          </div>
+          <!-- end row -->
+       </div>
+       <!-- footer -->
+      
+    </div>
+    <!-- end dashboard inner -->
+ </div>
+   
+
+
+{% endblock %}
